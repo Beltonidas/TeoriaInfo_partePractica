@@ -23,7 +23,7 @@ def calc_prob_sum_6():
         y = arrojarDado()
         print(y)
         if (x+y == 6):
-            exitos+1
+            exitos = exitos +1
         nTotal = nTotal + 1
         print("el n total es:", nTotal)
         probAnterior = probActual
@@ -31,6 +31,10 @@ def calc_prob_sum_6():
         probActual = exitos/nTotal
         print("la prob actual", probActual)
     return probActual
+
+def pruebagit():
+    a = 3
+    print (a)
 
 
 def arrojarDado():
