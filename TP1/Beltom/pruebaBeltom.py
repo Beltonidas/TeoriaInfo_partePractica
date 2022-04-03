@@ -45,7 +45,6 @@ def arrojarDado():
     for i in range(6):
         if n < probAcumulada[i]:
             return i
-
-
+        
 resul = calc_prob_sum_6()
 print(resul)

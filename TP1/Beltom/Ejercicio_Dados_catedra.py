@@ -1,4 +1,4 @@
-from asyncore import loop
+
 from random import *
 
 listaElementos = ["hola", 3, 5, 7, 2]
