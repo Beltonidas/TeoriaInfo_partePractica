@@ -4,9 +4,9 @@ from random import random
 
 
 def Sacar_sobre():
-    prob_acum = [2/5,3/5, 1]
+    prob_acum = [2/5, 1]
     p = random()
-    for i in range(6):
+    for i in range(len(prob_acum)):
         if (p < prob_acum[i]): 
             return i
 
@@ -22,9 +22,9 @@ def Calcular_prob_suma6(prob_act):
     prob_act=0
     minimo=0
     while (not converge (prob_ant,prob_act) or minimo>2):
-        x= Arrojar_dado();
-        y= Arrojar_dado();
-        if(x+y==6):
+        x= Sacar_sobre();
+        y= Sacar_sobre();
+        if(x=): # el arreglo[x] = dificil y arreglo[y] = dificil
             exitos+1
         N+1
         prob_ant=prob_act
