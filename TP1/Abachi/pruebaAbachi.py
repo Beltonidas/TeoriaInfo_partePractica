@@ -69,4 +69,3 @@ def Calcular_prob_suma6():
 prueba=Calcular_prob_suma6()
 
 print(prueba)
->>>>>>> 823679e7b3269fcffa536111a7614c54877e0e88
