@@ -6,12 +6,10 @@ print(n)
 
 def Arrojar_dado():
     prob_acum = [1/6, 2/6, 3/6, 4/6, 5/6, 1]
-<<<<<<< HEAD
-    p = randomLibrary
-    for i in range(6):
+    p = random()
+    for i in range (len(prob_acum)):
         if p < prob_acum[i]:
             return i
-
 
 def converge(ant, act):
     if (abs(ant - act) < 0.00000000001):
@@ -21,7 +19,7 @@ def converge(ant, act):
 
 def Calcular_Prob_Suma6():
     exitos = 0
-    N = 0
+    n = 0
     prob_ant = -1
     prob_act = 1
     while (not converge(prob_ant, prob_act)):
@@ -29,15 +27,11 @@ def Calcular_Prob_Suma6():
         y = Arrojar_dado()
         if(x+y == 6):
             exitos+1
-        N+1
+        n+1
         prob_ant = prob_act
-        prob_act = exitos / N
+        prob_act = exitos / n
     return prob_act
-=======
-    p = random()
-    for i in range(len(prob_acum)):
-        if (p < prob_acum[i]): 
-            return i+1
+  
 
 def converge (ant, act): 
    if ( abs (ant - act )< 0.0001 ):
@@ -51,8 +45,8 @@ def Calcular_prob_suma6():
     prob_act=0
     minimo=0
     while (not converge (prob_ant,prob_act) or minimo<15):
-        x= Arrojar_dado();
-        y= Arrojar_dado();
+        x= Arrojar_dado()
+        y= Arrojar_dado()
         if(x+y==6):
             exitos=exitos+1
         n=n+1
