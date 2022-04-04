@@ -4,16 +4,24 @@ n = random()
 print(n)
 
 
-def Sacar_sobre():
-    prob_acum = [2/5, 3/5, 1]
-    p = randomLibrary
-    for i in range(2):
+def Sacar_primer_sobre():
+    prob_acum = [2/5, 1]
+    p = random()
+    for i in range(len(prob_acum)):
         if p < prob_acum[i]:
             return i
 
 
+def Sacar_segundo_sobre(primer_sobre):
+    prob_acum = [1/2, 3/4], [1, 1]
+    p = random()
+    for i in range(0, 1):
+        if p < prob_acum[i][primer_sobre]:
+            return i
+
+
 def converge(ant, act):
-    if (abs(ant - act) < 0.00000000001):
+    if (abs(ant - act) < 0.0001):
         return True
     return False
 
@@ -24,8 +32,8 @@ def Sacar_al_menos_1_facil():
     prob_ant = -1
     prob_act = 1
     while (not converge(prob_ant, prob_act)):
-        x = Sacar_sobre()
-        y = Sacar_sobre()
+        x = Sacar_primer_sobre()
+        y = 0
         if(x+y == 6):
             exitos+1
         N+1
