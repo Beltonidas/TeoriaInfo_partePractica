@@ -25,7 +25,6 @@ public class Ej7 {
 			prob_act = (double) exitos / N;
 
 		}
-
 		return prob_act;
 
 	}
