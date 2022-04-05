@@ -14,6 +14,60 @@ print(n)
 # ctrl + k + c comentas
 # ctrl + k + u descomentas
 
+
+# enfermo = 0,005
 listEstado_acumulada = [0.005, 0.995]
+
+# positivo = 0.004455
+
 listTest_acumulada = [0.004455, 1]
 cantidadTests = 1000
+
+
+def converge(act, ant):
+    print("mi valor absoluto es:", abs(ant - act))
+    if(abs(ant - act) < 0.001):
+        return True
+    return False
+
+
+def resultadoTestPositivo():
+    n = random()
+    if (n <= 0.004455):
+        return 1
+    else:
+        return 0
+
+
+def estaEnferma():
+    n = random()
+    if (n <= 0.005):
+        return 1
+    else:
+        return 0
+
+
+def calc_prob():
+    exitos = 0
+    nTotal = 0
+    probAnterior = -1
+    probActual = 1
+    cantMinima = 1000
+    while((converge(probActual, probAnterior) == False) or (nTotal < cantMinima)):
+        x = estaEnferma()
+        y = resultadoTestPositivo()
+        if (x == 1 and y == 1):
+            exitos = exitos + 1
+            print("la cantidad de exitos: ", exitos)
+        nTotal = nTotal + 1
+        print("la cantidad de tiradas: ", nTotal)
+        print("la cantidad de exitos: ", exitos)
+        probAnterior = probActual
+        print("la prob anterior", probAnterior)
+        probActual = exitos/nTotal
+        print("la prob actual", probActual)
+    return probActual
+
+
+resul = calc_prob()
+print(resul)

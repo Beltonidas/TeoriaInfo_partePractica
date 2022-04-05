@@ -7,7 +7,7 @@ probAcumulada = [1/6, 2/6, 3/6, 4/6, 5/6, 6/6]
 
 def converge(act, ant):
     print("mi valor absoluto es:", abs(ant - act))
-    if(abs(ant - act) < 0.000000001):
+    if(abs(ant - act) < 0.001):
         return True
     return False
 
@@ -28,11 +28,8 @@ def calc_prob_sum_6():
             print("la cantidad de exitos: ", exitos)
         nTotal = nTotal + 1
         print("la cantidad de tiradas: ", nTotal)
-        print("el n total es:", nTotal)
         probAnterior = probActual
         print("la prob anterior", probAnterior)
-        aux = (exitos/nTotal)
-        print("mi aux es..", aux)
         probActual = exitos/nTotal
         print("la prob actual", probActual)
     return probActual
