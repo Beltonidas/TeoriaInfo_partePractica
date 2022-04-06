@@ -24,7 +24,7 @@ def testear(f1):
             return n
 
 def calcular_Proba():
-    min_experim=200
+    min_experim=2000
     exitos=0
     N=0
     prob_ant=-1
@@ -36,9 +36,10 @@ def calcular_Proba():
         #f2= 0 es positivo
         if (f1==1 and f2==1):
             exitos+=1
-        N+=1
-        prob_ant=prob_act
-        prob_act=exitos/N
+        if(f2==1):
+            N+=1
+            prob_ant=prob_act
+            prob_act=exitos/N
     return prob_act
 
 proba=calcular_Proba()

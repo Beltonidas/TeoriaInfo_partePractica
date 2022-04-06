@@ -6,7 +6,7 @@ prob_acu_enfermo = [0.005, 1]
 prob_acu_test = [[0.95, 1] , [0.04, 1]]
 
 def converge(ant,act):
-    epsilon=0.001
+    epsilon=0.00001
     if(abs(ant-act) < epsilon):
         return True
     return False
@@ -24,7 +24,7 @@ def testear(f1):
             return n
 
 def calcular_Proba():
-    min_experim=2000
+    min_experim=20000
     exitos=0
     N=0
     prob_ant=-1
@@ -36,9 +36,10 @@ def calcular_Proba():
         #f2= 0 es positivo
         if (f1==0 and f2==0):
             exitos+=1
-        N+=1
-        prob_ant=prob_act
-        prob_act=exitos/N
+        if (f2==0):
+            N+=1
+            prob_ant=prob_act
+            prob_act=exitos/N
     return prob_act
 
 proba=calcular_Proba()
