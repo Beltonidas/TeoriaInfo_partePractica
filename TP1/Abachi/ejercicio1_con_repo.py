@@ -1,4 +1,4 @@
-from pickle import TRUE
+
 from random import random
 
 
@@ -61,9 +61,11 @@ def segundo_facil_dado_dificil():  # probabilidad de sacar el segundo facil dado
     prob_act = 0
     minimo = 0
     while (not converge(prob_ant, prob_act) or minimo < 20):
-        y = Sacar_sobre()
-        if(y == 1):
-            exitos = exitos+1
+        x = Sacar_sobre()
+        if(x == 0):
+            y = Sacar_sobre()
+            if(y == 1):
+                exitos = exitos+1
         n = n+1
         prob_ant = prob_act
         prob_act = exitos/n
