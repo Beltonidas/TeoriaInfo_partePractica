@@ -28,7 +28,6 @@ cantidadTests = 1000
 
 
 def converge(act, ant):
-    print("mi valor absoluto es:", abs(ant - act))
     if(abs(ant - act) < 0.001):
         return True
     return False
@@ -36,16 +35,18 @@ def converge(act, ant):
 
 def resultadoTestPositivo(x):
     n = random()
-    if (x == 0):
-        if (n <= 0.04):
-            return 1
-        else:
+    # x == 1 --> esta enfermo
+    if (x == 1):
+        if (n > 0.05):  # el test dio positivo
             return 0
+        else:
+            return 1
     else:
-        if(n > 0.05):
-            return 1
+        # X == 0 --> esta sano
+        if(n <= 0.04):
+            return 2  # el test es positivo
         else:
-            return 0
+            return 3
 
 
 def estaEnferma():
@@ -58,23 +59,20 @@ def estaEnferma():
 
 def calc_prob():
     exitos = 0
-    nTotal = 0
+    nTotal = 1
     probAnterior = -1
     probActual = 1
     cantMinima = 1000
     while((converge(probActual, probAnterior) == False) or (nTotal < cantMinima)):
         x = estaEnferma()
         y = resultadoTestPositivo(x)
-        if (x == 1 and y == 1):
+        print("el valor de x es: ", x, " , el valor de y es: ", y)
+        if (x == 1 and y == 0):
             exitos = exitos + 1
-            print("la cantidad de exitos: ", exitos)
-        nTotal = nTotal + 1
-        print("la cantidad de tiradas: ", nTotal)
-        print("la cantidad de exitos: ", exitos)
+        if((x == 0 and y == 2) or (x == 1 and y == 0)):
+            nTotal = nTotal + 1
         probAnterior = probActual
-        print("la prob anterior", probAnterior)
         probActual = exitos/nTotal
-        print("la prob actual", probActual)
     return probActual
 
 
