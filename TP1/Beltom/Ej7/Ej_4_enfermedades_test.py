@@ -62,7 +62,7 @@ def calc_prob():
     nTotal = 1
     probAnterior = -1
     probActual = 1
-    cantMinima = 1000
+    cantMinima = 10000
     while((converge(probActual, probAnterior) == False) or (nTotal < cantMinima)):
         x = estaEnferma()
         y = resultadoTestPositivo(x)
@@ -75,6 +75,8 @@ def calc_prob():
         probActual = exitos/nTotal
     return probActual
 
+
+# Con esa entrada "cantMinima" me dio como resultado 0.107
 
 resul = calc_prob()
 print(resul)
