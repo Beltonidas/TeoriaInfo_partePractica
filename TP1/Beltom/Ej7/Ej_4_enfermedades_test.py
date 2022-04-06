@@ -16,7 +16,10 @@ print(n)
 
 
 # enfermo = 0,005
-listEstado_acumulada = [0.005, 0.995]
+listEstado_acumulada = [0.005, 1]
+
+lista_uno = [0.05, 1]
+lista_2 = [0.04, 1]
 
 # positivo = 0.004455
 
@@ -31,12 +34,18 @@ def converge(act, ant):
     return False
 
 
-def resultadoTestPositivo():
+def resultadoTestPositivo(x):
     n = random()
-    if (n <= 0.004455):
-        return 1
+    if (x == 0):
+        if (n <= 0.04):
+            return 1
+        else:
+            return 0
     else:
-        return 0
+        if(n > 0.05):
+            return 1
+        else:
+            return 0
 
 
 def estaEnferma():
@@ -55,7 +64,7 @@ def calc_prob():
     cantMinima = 1000
     while((converge(probActual, probAnterior) == False) or (nTotal < cantMinima)):
         x = estaEnferma()
-        y = resultadoTestPositivo()
+        y = resultadoTestPositivo(x)
         if (x == 1 and y == 1):
             exitos = exitos + 1
             print("la cantidad de exitos: ", exitos)
