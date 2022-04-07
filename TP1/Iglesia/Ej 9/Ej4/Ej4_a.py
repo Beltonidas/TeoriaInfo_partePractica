@@ -6,21 +6,25 @@ prob_acu_enfermo = [0.005, 1]
 prob_acu_test = [[0.95, 1] , [0.04, 1]]
 
 def converge(ant,act):
-    epsilon=0.001
+    epsilon=0.00001
     if(abs(ant-act) < epsilon):
         return True
     return False
 
 def enfermedad():
+    #random.seed(float)
     s=random()
-    for n in range(2):
-        if ( s <= prob_acu_enfermo[n]): # ¿< o <=?
+    alternativas = len(prob_acu_enfermo)
+    for n in range(alternativas):
+        if (s <= prob_acu_enfermo[n]): # ¿< o <=?
             return n
 
 def testear(f1):
+    #random.seed(float)
     s=random()
-    for n in range(2):
-        if ( s <= prob_acu_test[f1][n]):
+    alternativas = len(prob_acu_test)
+    for n in range(alternativas):
+        if (s <= prob_acu_test[f1][n]):
             return n
 
 def calcular_Proba():
