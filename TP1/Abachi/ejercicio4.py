@@ -31,7 +31,7 @@ def converge(ant, act):
 
 def Enfermo_dado_positivo():
     exitos = 0
-    n = 0
+    n = 1
     prob_ant = -1
     prob_act = 1
     minimo = 0
@@ -42,7 +42,8 @@ def Enfermo_dado_positivo():
         print("Es +/-", y)
         if((x == 0 and y == 1)):
             exitos = exitos+1
-        n = n+1
+        if((x == 0 and y == 2) or (x == 1 and y == 0)):
+            n = n+1
         prob_ant = prob_act
         prob_act = exitos / n
         minimo = minimo+1
