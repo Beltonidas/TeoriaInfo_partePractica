@@ -10,12 +10,6 @@ def Sacar_sobre():
             return i
 
 
-def converge(ant, act):
-    if (abs(ant - act) < 0.0001):
-        return True
-    return False
-
-
 def Al_menos1_facil():  # probabilidad de sacar al menos un parcial facil
     exitos = 0
     n = 0
@@ -33,6 +27,12 @@ def Al_menos1_facil():  # probabilidad de sacar al menos un parcial facil
         minimo = minimo+1
         print("proba actual: ", prob_act)
     return prob_act
+
+
+def converge(ant, act):
+    if (abs(ant - act) < 0.0001):
+        return True
+    return False
 
 
 def dos_faciles():  # probabilidad de sacar dos parciales faciles
@@ -74,5 +74,5 @@ def segundo_facil_dado_dificil():  # probabilidad de sacar el segundo facil dado
     return prob_act
 
 
-prueba = dos_faciles()
+prueba = Al_menos1_facil()
 print(prueba)
