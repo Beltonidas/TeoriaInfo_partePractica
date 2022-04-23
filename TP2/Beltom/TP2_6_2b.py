@@ -45,13 +45,12 @@ def Calcular_Vector_Estado(iteration):
     Vt = [0, 0, 0]  # Vector de estado actual
     Vt_ant = [-1, 0, 0]  # Vector de estado anterior
     mensajes = 0  # cantidad de mensajes emitidos
-
     T_MIN = 500
 
     while not converge(Vt, Vt_ant) or (mensajes < T_MIN):
         s = first_symbol()
 
-        for i in range(len(interation)):
+        for i in range(len(iteration)):
             s = second_symbol(s)
             print(i)
         emisiones[s] = emisiones[s]+1
