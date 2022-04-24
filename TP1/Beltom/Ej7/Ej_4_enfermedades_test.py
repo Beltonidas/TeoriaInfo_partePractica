@@ -62,7 +62,11 @@ def calc_prob():
     nTotal = 1
     probAnterior = -1
     probActual = 1
+<<<<<<< HEAD
     cantMinima = 1000
+=======
+    cantMinima = 100
+>>>>>>> 7cea1b6a4d74099c5240bb16f698bbe36f6d09a9
     while((converge(probActual, probAnterior) == False) or (nTotal < cantMinima)):
         x = estaEnferma()
         y = resultadoTestPositivo(x)
