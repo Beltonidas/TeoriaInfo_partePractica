@@ -10,7 +10,9 @@ prob_acum = [[0, 0.5, 1], [0.25, 0.75, 1], [0.25, 0.75, 1]]
 #                           S               L               N
 # prob_acum = np.array([[0, 0.5, 1], [0.25, 0.75, 1], [0.25, 0.75, 1]])
 
+# static data
 epsilon = 0.0001
+simbolos = 3
 
 
 def Emitir_Simbolo():
@@ -28,9 +30,19 @@ def converge(act, ant):
 
 def first_symbol():
     r = random()
-    for i in range(len(simbolos)):
-        if (r < V0acum[i]):
+    for i in range(simbolos):
+        if (r < vInicial_acum[i]):
             return i
+
+
+def prueba():
+    for i in range(100):
+        aux = first_symbol()
+        print(aux)
+
+
+result = prueba()
+print(result)
 
 
 def second_symbol(s_ant):
@@ -77,9 +89,3 @@ def Calcular_Vector_Estacionario():
         V_est = emisiones/mensajes
 
     return V_est
-
-
-print(vInicial_acum.shape[0])
-
-resultado = Calcular_Vector_Estacionario()
-print(resultado)
