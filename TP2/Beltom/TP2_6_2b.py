@@ -15,40 +15,37 @@ epsilon = 0.0001
 simbolos = 3
 
 
-def Emitir_Simbolo():
-    r = random()
-    for i in range(len(simbolos)):
-        if (r < Vacum[i]):
-            return i
-
-
 def converge(act, ant):
-    if(abs(ant - act) < 0.001):
-        return True
+    for i in range(simbolos):
+        if(abs(ant[i] - act[i]) < 0.001):
+            return True
     return False
 
 
 def first_symbol():
     r = random()
-    for i in range(simbolos):
-        if (r < vInicial_acum[i]):
-            return i
+    print (r)
+    if (r <= 0.33):
+        return 0
+    if (r > 0.33 and r<= 0.66):
+        return 1
+    return 2
 
 
-def prueba():
-    for i in range(100):
-        aux = first_symbol()
-        print(aux)
+# def prueba():
+#     for i in range(100):
+#         aux = first_symbol()
+#         print(aux)
 
 
-result = prueba()
-print(result)
+# result = prueba()
+# print(result)
 
 
 def second_symbol(s_ant):
     r = random()
-    for i in range(len(simbolos)):
-        if (r < Macum[i, s_ant]):
+    for i in range(simbolos):
+        if (r < prob_acum[i, s_ant]):
             return i
 
 
@@ -61,7 +58,6 @@ def Calcular_Vector_Estado(iteration):
 
     while not converge(Vt, Vt_ant) or (mensajes < T_MIN):
         s = first_symbol()
-
         for i in range(len(iteration)):
             s = second_symbol(s)
             print(i)
@@ -77,15 +73,18 @@ def Calcular_Vector_Estacionario():
     emisiones = [0, 0, 0]  # cantidad de emisiones de cada si
     V_est = [0, 0, 0]  # Vector de estado actual
     V_est_ant = [-1, 0, 0]  # Vector de estado anterior
-    mensajes = 0  # cantidad de mensajes emitidos
     T_MIN = 500
+    s = first_symbol()
+    emisiones[s] = emisiones[s]+1
+    mensajes = 1  # cantidad de mensajes emitidos
     while not converge(V_est, V_est_ant) or (mensajes < T_MIN):
-        s = first_symbol()
-        for i in range(len(t)):
-            s = second_symbol(s)
+        s = second_symbol(s)
         emisiones[s] = emisiones[s]+1
         mensajes = mensajes+1
         V_est_ant = V_est
         V_est = emisiones/mensajes
 
     return V_est
+
+v= Calcular_Vector_Estacionario()
+print(v)
