@@ -28,7 +28,7 @@ cantidadTests = 1000
 
 
 def converge(act, ant):
-    if(abs(ant - act) < 0.001):
+    if(abs(ant - act) < 0.000001):
         return True
     return False
 
@@ -62,7 +62,7 @@ def calc_prob():
     nTotal = 1
     probAnterior = -1
     probActual = 1
-    cantMinima = 10000
+    cantMinima = 1000
     while((converge(probActual, probAnterior) == False) or (nTotal < cantMinima)):
         x = estaEnferma()
         y = resultadoTestPositivo(x)
