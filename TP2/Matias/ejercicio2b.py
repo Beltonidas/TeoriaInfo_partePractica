@@ -3,9 +3,6 @@ from random import *
 vInicial_acum = [0, 1, 1]
 #                 S               L               N
 prob_acum = [[0, 0.5, 1], [0.25, 0.50, 1], [0.25, 0.75, 1]]
-#                           S               L               N
-# prob_acum = np.array([[0, 0.5, 1], [0.25, 0.75, 1], [0.25, 0.75, 1]])
-# static data
 epsilon = 0.00000001
 simbolos = 3
 
