@@ -93,4 +93,96 @@ public class Ej7_2_SinReposicion {
 
 	}
 
+
+
+	public class Montecarlo {
+		private static final int MIN_MENSAJES = 500;
+		private static final int NUM_SIMBOLOS = 3;
+		// Valor Epsilon para control de convergencia
+		private float epsilon = 0.000001f;
+	
+		// Constructor por defecto
+		public Montecarlo()
+		{
+		}
+	
+		// Constructor con valor de epsilon
+		public Montecarlo(float epsilon)
+		{
+			this.epsilon = epsilon;
+		}
+	
+		private boolean Converge(float VoAnterior[], float VoActual[])
+		{
+			for(int i = 0; i < NUM_SIMBOLOS; i++){
+				if(Math.abs(VoActual[i] - VoAnterior[i]) > this.epsilon){
+					return false;
+				}
+			}
+			return true;
+		}
+	
+		private int Primer_Simbolo()
+		{
+			float[] VoAcumulada = new float[] {1f, 1f, 1f};
+			float prob = (float) Math.random();
+			for (int i = 0; i < NUM_SIMBOLOS; i++)
+			{
+				if (prob < VoAcumulada[i]) {
+					return i;
+				}
+			}
+			return -1;
+		}
+	
+		private int Siguiente_Simbolo_Dado_Anterior(int simboloAnterior){
+			float[][] matrizAcumulada = new float[][] {{1f/4,3f/4,0f}, {3f/4,1f,1f/2}, {1f,1f,1f}};
+			float prob = (float) Math.random();
+			for (int i = 0; i < NUM_SIMBOLOS; i++)
+			{
+				if (prob < matrizAcumulada[i][simboloAnterior]) {
+					return i;
+				}
+			}
+			return -1;
+		}
+	
+		public float Calcular_Probabilidad_Emitir_Simbolo_Estado(int simbolo, int estado){
+			int mensajes = 0;
+			int[] emisiones = new int[] {0, 0, 0};
+			float[] Vt = new float[] {0f, 0f, 0f};
+			float[] Vt_Ant = new float[] {-1f, 0f, 0f};
+			while(!this.Converge(Vt_Ant,Vt) || mensajes < MIN_MENSAJES)
+			{
+				int s = this.Primer_Simbolo();
+				for(int i = 0; i < estado; i++){
+					s = this.Siguiente_Simbolo_Dado_Anterior(s);
+				}
+				emisiones[s]++;
+				mensajes++;
+				for(int i = 0; i < NUM_SIMBOLOS; i++){
+					Vt_Ant[i] = Vt[i];
+					Vt[i] = (float)emisiones[i]/mensajes;
+				}
+			}
+			return Vt[simbolo];
+		}
+	
+		float [] mediaRecurrencia () {
+			int[] ret_simbolos = {0, -1, -1};
+			int tiempo_actual = 0;
+			float[] mediaAct = {0, 0, 0};
+			float[] mediaAnt = {-1, -1, -1};
+			int s = Primer_Simbolo();
+			while ((!this.Converge(mediaAnt, mediaAct)) || (tiempo_actual < MIN_MENSAJES)){
+				s = this.Siguiente_Simbolo_Dado_Anterior(s);
+				tiempo_actual++;
+				ret_simbolos[s]++;
+				mediaAnt[s] = mediaAct[s];
+				mediaAct[s] = (float) tiempo_actual / ret_simbolos[s];
+			}
+			return mediaAct;
+		}
+	}
+
 }
