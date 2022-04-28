@@ -1,7 +1,5 @@
 #ejercicio 6 2b en montecarlo  proporción de días que serán soleados, nublados y lluviosos en estado estacionario
 from random import *
-#import numpy as np
-# vInicial_acum = np.array([0, 1, 1])
 vInicial_acum = [0, 1, 1]
 #                 S               L               N
 prob_acum = [[0, 0.5, 1], [0.25, 0.50, 1], [0.25, 0.75, 1]]
