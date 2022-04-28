@@ -36,32 +36,31 @@ def Prob_primera_recurrencia(simbolo):
     pasos = 500
     T_MIN = 1000
     retornos = []  # retornos a si en n pasos
-    fi_i = []  # prob. primera recurrencia actual
-    fi_i_ant = []  # prob. primera recurrencia anterior
+    frecuenciaInicial = []  # prob. primera recurrencia actual
+    frecIncAnte = []  # prob. primera recurrencia anterior
     for _ in range(pasos):
-        fi_i.append(0)
-        fi_i_ant.append(-1)
+        frecuenciaInicial.append(0)
+        frecIncAnte.append(-1)
         retornos.append(0)
     t_actual = 0
     ret_total = 0
     ult_ret = 0
     # parámetro (no es necesario generar Primer_Simbolo)
     primerSimbolo = simbolo
-    while (t_actual < T_MIN):
+    while (not converge(frecuenciaInicial, frecIncAnte) or t_actual < T_MIN):
         NuevoSimbolo = second_symbol(primerSimbolo)
         #print("simbolo: ", s)
         t_actual += 1
+        frecIncAnte = frecuenciaInicial
         if (NuevoSimbolo == simbolo):   # hay retorno
             pos = t_actual - ult_ret
             retornos[pos] += 1
             ret_total += 1
-            fi_i_ant = fi_i
-            for i in range(len(fi_i)):
-                fi_i[i] = retornos[i]/ret_total
+            for i in range(pasos):
+                frecuenciaInicial[i] = retornos[i]/ret_total
             ult_ret = t_actual
+    return frecuenciaInicial
 
-    return fi_i
 
-
-v = Prob_primera_recurrencia(2)
+v = Prob_primera_recurrencia(1)
 print(v)
