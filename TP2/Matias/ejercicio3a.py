@@ -1,6 +1,5 @@
 #ejercicio 6 3a en montecarlo  inicial 0  prob en paso 1 2 y 3
 from random import *
-#import numpy as np
 vInicial_acum = [0, 1, 1]
 #                 0               1               2
 prob_acum = [[0.25, 0.75, 1], [0.75, 1, 1], [0, 0.5, 1]]
