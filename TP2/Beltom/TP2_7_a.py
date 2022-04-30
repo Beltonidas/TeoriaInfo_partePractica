@@ -46,20 +46,21 @@ def Prob_primera_recurrencia(simbolo):
     ret_total = 0
     ult_ret = 0
     # parámetro (no es necesario generar Primer_Simbolo)
-    primerSimbolo = simbolo
+    nuevoSimbolo = simbolo
     while (t_actual < T_MIN or not converge(frecuenciaInicial, frecIncAnte)):
-        NuevoSimbolo = second_symbol(primerSimbolo)
+        nuevoSimbolo = second_symbol(nuevoSimbolo)
         t_actual += 1
         frecIncAnte = frecuenciaInicial
-        if (NuevoSimbolo == simbolo):   # hay retorno
+        if (nuevoSimbolo == simbolo):   # hay retorno
             pos = t_actual - ult_ret
             retornos[pos] += 1
             ret_total += 1
             ult_ret = t_actual
             for i in range(pasos):
                 frecuenciaInicial[i] = retornos[i]/ret_total
+            
     return frecuenciaInicial
 
 
-v = Prob_primera_recurrencia(0)
+v = Prob_primera_recurrencia(2)
 print(v)
