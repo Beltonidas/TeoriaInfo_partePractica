@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "TeoriaInfo_d6a4acd7"
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
