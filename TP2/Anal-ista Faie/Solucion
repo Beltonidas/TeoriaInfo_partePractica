@@ -1,0 +1,55 @@
+from random import random
+
+cant_minima = 100000
+matriz = [[1 / 2, 1 / 2, 0], [1 / 3, 1 / 3, 1 / 3], [0, 1, 0]]
+matriz_prob_acumulada = [[1 / 2, 1, 1], [1 / 3, 2 / 3, 1], [0, 1, 1]]
+cadena = []
+valor_convergencia = 0.000001
+
+
+def calcular_primera_recurrencia(primer_simbolo, n):
+    def converge():
+        global cant_minima, iteraciones, prob_actual, prob_anterior, valor_convergencia
+        if cant_minima < iteraciones and abs(prob_anterior-prob_actual) < valor_convergencia:
+            return True
+        return False
+
+    def generar_simbolo(simbolo_anterior):
+        auxiliar = random()
+        for z in range(3):
+            if matriz_prob_acumulada[simbolo_anterior - 1][z] > auxiliar:
+                return z + 1
+
+    def primera_recurrencia(w, y):
+        if y != n:
+            y += 1
+            cadena.append(w)
+            if w == primer_simbolo:
+                if y == n:
+                    return True
+                else:
+                    return False
+            else:
+                return primera_recurrencia(generar_simbolo(w), y)
+        return False
+
+    global iteraciones, matriz_prob_acumulada, prob_actual, prob_anterior, rec_actual, cadena
+    while not converge():
+        cadena.append(primer_simbolo)
+        exito = primera_recurrencia(generar_simbolo(primer_simbolo), 0)
+        iteraciones += 1
+        if exito:
+            rec_actual += 1
+        prob_anterior = prob_actual
+        prob_actual = rec_actual / iteraciones
+        cadena = []
+
+
+for simbolo in range(3):
+    for x in range(5):
+        prob_anterior = -1
+        iteraciones = 0
+        prob_actual = 0
+        rec_actual = 0
+        calcular_primera_recurrencia(simbolo+1, x+1)
+        print("Probabilidad de 1era Rec de ",simbolo+1," en",x+1,"pasos =",prob_actual)

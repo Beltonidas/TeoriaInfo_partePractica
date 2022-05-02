@@ -13,14 +13,12 @@ def Enfermo_o_Sano():
 
 
 def Resultado_Test(Estado_Salud):
-    if(Estado_Salud == 0):
-        prob_acum = [0.05, 1]  # si es 0 es -, si es 1 es +
-    else:
-        prob_acum = [0.96, 1]  # si es 0 es -, si es 1 es +
+    prob_acum = [[1/2, 3/4], [1, 1]]
     p = random()
     for i in range(len(prob_acum)):
-        if p < prob_acum[i]:
+        if p < prob_acum[i][Estado_Salud]:
             return i
+
 
 
 def converge(ant, act):
