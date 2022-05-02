@@ -1,6 +1,11 @@
 from random import *
 import numpy as np
 
+#inicializacion
+v0_acu=np.array([0,1,1])
+proba_acu = np.array([[1/2, 1, 1], [1/3, 2/3, 1], [0, 1, 1]])
+epsilon = 0.0001
+
 def converge(act, ant):
     epsilons = np.full_like(act, epsilon)
     absolutos = np.absolute(ant-act)
@@ -20,7 +25,7 @@ def sig_dado_ant(s_ant):
     nro_simbolos = proba_acu.shape[1]
     for n in range(nro_simbolos):
         valor = proba_acu[s_ant,n]
-        if(r < valor):
+        if(r <= valor):
             return n
 
 def calcular_V():
@@ -43,32 +48,36 @@ def calcular_V():
 
 def calcular_1er_recurrencia():
     #inicializacion
-    min = 1000
-    n_Pasos = 500
+    min = 10000
+    n_Pasos = 5
     t_actual = 0
     total_retornos = np.zeros(3, dtype=np.intc) #ver si puedo generalizarlo
-    retornos = np.zeros((3,n_Pasos))
+    retornos = np.zeros((3, n_Pasos+1)) #sumo 1 porque no voy a usar el cero
     f_act = np.zeros_like(retornos)
     f_ant = np.ones_like(retornos)
     ult_ret = np.zeros_like(total_retornos)
+    #al aparecer un numero, puede que sea su primer ocurrencia, en vez de una recurrencia
+    hubo_1er_ocurrencia = np.full(3,False)
     s=primer_simbolo()
+    hubo_1er_ocurrencia[s] = True
     #iteracion
     while(not converge(f_act,f_ant) or t_actual < min):
         t_actual += 1
         f_ant = f_act
         s = sig_dado_ant(s)
-        total_retornos[s] += 1
-        tiempo_ret = t_actual - ult_ret[s]
-        ult_ret[s] = t_actual
-        retornos[s,tiempo_ret] += 1
-        #la notación f[s,:] significa "de la fila s, todas las columnas"
-        f_act[s,:] = retornos[s,:]/total_retornos[s]
-    return f_act
 
-#inicializacion
-v0_acu=np.array([0,1,1])
-proba_acu = np.array([[1/2, 1, 1], [1/3, 2/3, 1], [0, 1, 1]])
-epsilon = 0.0001
+        #Puede que sea la primer ocurrencia de "s", en vez de una recurrencia
+        if(not hubo_1er_ocurrencia[s]):
+            hubo_1er_ocurrencia[s] = True
+        else:
+            total_retornos[s] += 1
+            tiempo_ret = t_actual - ult_ret[s]
+            if(tiempo_ret <= 5):
+                retornos[s,tiempo_ret] += 1
+            #la notación f[s,:] significa "de la fila s, todas las columnas"
+            f_act[s,:] = retornos[s,:]/total_retornos[s]
+        ult_ret[s] = t_actual
+    return f_act
 
 #calculos
 v = calcular_V()
