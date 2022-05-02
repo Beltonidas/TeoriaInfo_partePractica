@@ -10,7 +10,7 @@ vInicial_acum = [1/3, 2/3, 1]
 epsilon = 0.0001
 simbolos = 3
 T_MIN = 1000
-pasos = 4
+pasos = 6
 
 
 def converge(act, ant, pasos, Simbolo):
@@ -36,7 +36,6 @@ def second_symbol(s_ant):
 
 def Prob_primera_recurrencia():
     # retornos = recurrencia
-    T_MIN = 1000
     retornos = np.zeros((3, pasos))  # retornos a si en n pasos
     # matriz de retornos pero en probabilidades
     frecuenciaActual = np.zeros((3, pasos))  # prob. primera recurrencia actual
@@ -51,8 +50,9 @@ def Prob_primera_recurrencia():
         Simbolo = second_symbol(Simbolo)
         t_actual += 1
         frecIncAnte = frecuenciaActual
-        pos = t_actual - abs(ult_ret[Simbolo])
         if not (ult_ret[Simbolo] == -1):
+            pos = t_actual - ult_ret[Simbolo]
+            if()
             retornos[Simbolo, pos] += 1
             total_retornos[Simbolo] += 1
         ult_ret[Simbolo] = t_actual
