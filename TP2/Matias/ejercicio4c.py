@@ -3,7 +3,7 @@
 #símbolos símbolos consecutivos iguales (en estado estacionario)
 
 from random import *
-vInicial_acum = [0, 1, 1]
+vInicial_acum = [0.33, 0.66, 1]
 #                 1               2              3
 prob_acum = [[0.50, 1, 1], [0.33, 0.66, 1], [0, 1, 1]]
 epsilon = 0.000001
@@ -17,11 +17,10 @@ def converge(act, ant):
 
 def first_symbol():
     r = random()
-    if (r <= 0.33):
-        return 1
-    if (r > 0.33 and r <= 0.66):
-        return 2
-    return 3
+    for i in range(simbolos):
+        if (r < vInicial_acum[i]):
+            return i
+    return -1
 
 def sig_symbol(s_ant):
     r = random()

@@ -1,6 +1,6 @@
 #ejercicio 6 2b en montecarlo  proporción de días que serán soleados, nublados y lluviosos en estado estacionario
 from random import *
-vInicial_acum = [0, 1, 1]
+vInicial_acum = [0.33, 0.66, 1]
 #                 S               L               N
 prob_acum = [[0, 0.5, 1], [0.25, 0.50, 1], [0.25, 0.75, 1]]
 epsilon = 0.00000001
@@ -15,12 +15,10 @@ def converge(act, ant):
 
 def first_symbol():
     r = random()
-    print("first: ",r)
-    if (r <= 0.33):
-        return 0
-    if (r > 0.33 and r <= 0.66):
-        return 1
-    return 2
+    for i in range(simbolos):
+        if (r < vInicial_acum[i]):
+            return i
+    return -1
 
 def second_symbol(s_ant):
     r = random()
