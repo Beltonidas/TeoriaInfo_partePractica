@@ -1,0 +1,50 @@
+from random import *
+prob_acum = [[0.5, 1, 1], [1/3, 2/3, 1], [0, 1, 1]]
+vInicial_acum = [1/3, 2/3, 1]
+epsilon = 0.00000001
+simbolos = 3
+
+
+def converge(act, ant):
+    for i in range(simbolos):
+        if(abs(ant[i] - act[i]) < epsilon):
+            return True
+    return False
+
+
+def first_symbol():
+    r = random()
+    for i in range(simbolos):
+        if (r < vInicial_acum[i]):
+            return i
+    return -1
+
+
+def second_symbol(s_ant):
+    r = random()
+    for i in range(simbolos):
+        if (r < prob_acum[s_ant][i]):
+            return i
+    return -1
+
+
+def Calcular_Vector_Estacionario():
+    emisiones = [0, 0, 0]  # cantidad de emisiones de cada si
+    V_est = [0, 0, 0]  # Vector de estado actual
+    V_est_ant = [-1, 0, 0]  # Vector de estado anterior
+    T_MIN = 1000000
+    s = first_symbol()
+    emisiones[s] = emisiones[s]+1
+    mensajes = 1  # cantidad de mensajes emitidos
+    while not converge(V_est, V_est_ant) or (mensajes < T_MIN):
+        s = second_symbol(s)
+        emisiones[s] += 1
+        mensajes += 1
+        V_est_ant = V_est
+        for i in range(len(V_est)):
+            V_est[i] = emisiones[i]/mensajes
+    return V_est
+
+
+v = Calcular_Vector_Estacionario()
+print(v)
