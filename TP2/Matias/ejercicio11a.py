@@ -7,43 +7,41 @@ simbolos = 3
 
 def converge(act, ant):
     for i in range(simbolos):
-        if(abs(ant[i] - act[i]) < epsilon):
-            return True
-    return False
+        if(abs(act[i] - ant[i]) > epsilon):
+            return False
+    return True
 
 
-def first_symbol():
+def primer_simbolo():
     r = random()
     for i in range(simbolos):
         if (r < vInicial_acum[i]):
             return i
-    return -1
 
 
-def second_symbol(s_ant):
+def segundo_simbolo(s_ant):
     r = random()
     for i in range(simbolos):
         if (r < prob_acum[s_ant][i]):
             return i
-    return -1
 
 
 def Calcular_Vector_Estacionario():
     emisiones = [0, 0, 0]  # cantidad de emisiones de cada si
-    V_est = [0, 0, 0]  # Vector de estado actual
-    V_est_ant = [-1, 0, 0]  # Vector de estado anterior
-    T_MIN = 1000000
-    s = first_symbol()
+    V_actual = [0, 0, 0]  # Vector de estado actual
+    V_anterior = [-1, 0, 0]  # Vector de estado anterior
+    S_MIN = 1000000
+    s = primer_simbolo()
     emisiones[s] = emisiones[s]+1
-    mensajes = 1  # cantidad de mensajes emitidos
-    while not converge(V_est, V_est_ant) or (mensajes < T_MIN):
-        s = second_symbol(s)
+    cant_simb = 1  # cantidad de simbolos emitidos
+    while not converge(V_actual, V_anterior) or (cant_simb < S_MIN):
+        s = segundo_simbolo(s)
         emisiones[s] += 1
-        mensajes += 1
-        V_est_ant = V_est
-        for i in range(len(V_est)):
-            V_est[i] = emisiones[i]/mensajes
-    return V_est
+        cant_simb += 1
+        V_anterior = V_actual
+        for i in range(len(V_actual)):
+            V_actual[i] = emisiones[i]/cant_simb
+    return V_actual
 
 
 v = Calcular_Vector_Estacionario()

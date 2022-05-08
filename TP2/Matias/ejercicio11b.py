@@ -67,7 +67,6 @@ def Prob_primera_recurrencia():
 
         # si es primera ocurrencia
         ultimo_retorno[Simbolo] = t_actual
-
     return frecuenciaActual
 
 
