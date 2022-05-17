@@ -2,13 +2,10 @@ import math
 from operator import truediv
 
 # Estructuras de datos
-listPi = [0.4, 0.12, 0.25, 0.08, 0.15];
+listPi = [0.385, 0.154, 0.128, 0.154, 0.179];
 listLog= [0,0,0,0,0];
 listLong=[]
 
-entrada= True
-while (entrada):
-    print("prob_pi")
 
 logbn = 0
 entropia = 0
