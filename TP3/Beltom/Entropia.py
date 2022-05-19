@@ -2,9 +2,12 @@ import math
 from operator import truediv
 
 # Estructuras de datos
-listPi = [0.385, 0.154, 0.128, 0.154, 0.179];
-listLog= [0,0,0,0,0];
-listLong=[]
+listPi = [0.6, 0.1, 0.3];
+listLog= [0,0,0];
+
+#listPi = [1/22,1/22,18/44, 6/44, 1/11, 1/11, 4/22];
+#listLog= [0,0,0, 0,0,0, 0];
+#listLong=[]
 
 
 logbn = 0
